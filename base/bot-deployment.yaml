@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discord-bot-deployment
+  labels:
+    name: discord-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: discord-bot
+  template:
+    metadata: 
+      labels:
+        name: discord-bot
+    spec:
+      containers:
+      - name: discord-bot
+        image: jeffreyfreeland/discord-bot:v0.0.1-dev
+        env:
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: bot-token
+              key: TOKEN
