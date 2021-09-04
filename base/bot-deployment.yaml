@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: discord-bot
-        image: jeffreyfreeland/discord-bot:v0.0.1-dev
+        image: jeffreyfreeland/discord-bot:v0.0.1
         env:
         - name: TOKEN
           valueFrom:
