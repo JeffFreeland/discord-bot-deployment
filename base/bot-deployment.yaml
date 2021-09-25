@@ -18,6 +18,11 @@ spec:
       - name: discord-bot
         image: jeffreyfreeland/discord-bot:v0.0.1
         env:
+        - name: CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              name: bot-config
+              key: bot-client-id
         - name: TOKEN
           valueFrom:
             secretKeyRef:
