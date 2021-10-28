@@ -14,24 +14,9 @@ spec:
       labels:
         name: discord-bot
     spec:
-      initContainers:
-      - name: register-commands
-        image: jeffreyfreeland/discord-bot:v0.0.3
-        command: ['npm', 'run', 'deploy-commands']
-        env:
-        - name: CLIENT_ID
-          valueFrom:
-            configMapKeyRef:
-              name: bot-config
-              key: bot-client-id
-        - name: TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: bot-token
-              key: TOKEN
       containers:
       - name: discord-bot
-        image: jeffreyfreeland/discord-bot:v0.0.4-dev
+        image: jeffreyfreeland/discord-bot:v0.0.4
         env:
         - name: TOKEN
           valueFrom:
