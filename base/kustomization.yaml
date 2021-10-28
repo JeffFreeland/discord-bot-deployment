@@ -1,2 +1,7 @@
 resources:
 - bot-deployment.yaml
+
+configMapGenerator:
+- name: image-urls-file
+  files: 
+  - imageFile=image-urls.txt

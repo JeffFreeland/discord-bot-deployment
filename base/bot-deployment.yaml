@@ -17,7 +17,7 @@ spec:
       initContainers:
       - name: register-commands
         image: jeffreyfreeland/discord-bot:v0.0.3
-        command: ['npm', 'run', 'deploy-commands'] 
+        command: ['npm', 'run', 'deploy-commands']
         env:
         - name: CLIENT_ID
           valueFrom:
@@ -31,10 +31,21 @@ spec:
               key: TOKEN
       containers:
       - name: discord-bot
-        image: jeffreyfreeland/discord-bot:v0.0.3
+        image: jeffreyfreeland/discord-bot:v0.0.4-dev
         env:
         - name: TOKEN
           valueFrom:
             secretKeyRef:
               name: bot-token
               key: TOKEN
+        volumeMounts:
+        - name: config
+          mountPath: /app/config/
+          readOnly: true
+      volumes:
+      - name: config
+        configMap: 
+          name: image-urls-file
+          items:
+          - key: imageFile
+            path: image-urls.txt
